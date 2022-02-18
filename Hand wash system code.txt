@@ -1,0 +1,39 @@
+#include <Servo.h> 
+Servo servo1;
+int relayPin = 8;// define output pin for relay 
+int irinput = 3;
+void setup() {
+  pinMode(relayPin, OUTPUT);// define pin 8 as output
+  pinMode(irinput,INPUT);
+  servo1.attach(10);
+}
+
+void loop() {
+  
+  if (digitalRead(irinput)== LOW)
+  {
+  digitalWrite(relayPin, LOW); // turn the relay ON (low is ON if relay is LOW trigger. change it to HIGH if you have got HIGH trigger relay)
+  delay(5000); // wait for 500 millisecond
+  digitalWrite(relayPin, HIGH);
+  delay(1000);
+  servo1.write(180);
+  delay(1000);
+  servo1.write(0);
+  delay(6000);
+  servo1.write(180);
+  delay(1000);
+  digitalWrite(relayPin, HIGH);
+  delay(20000);
+  digitalWrite(relayPin, LOW);
+  delay(10000);
+  digitalWrite(relayPin, HIGH);
+  delay(1000);
+  }
+  else 
+  {
+    
+    digitalWrite(relayPin, HIGH);// // turn the relay OFF (HIGH is OFF if relay is LOW trigger. change it to LOW if you have got HIGH trigger relay)
+    
+  }
+  
+}
